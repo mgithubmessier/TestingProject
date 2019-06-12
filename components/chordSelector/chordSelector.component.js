@@ -47,7 +47,6 @@ export default class ChordSelector extends React.Component {
           visible={this.state.modalVisible}
           onRequestClose={this.onChange}>
           <SafeAreaView style={styles.modalContainer}>
-            <
             <View style={styles.radioContainer}>
               <RadioForm
                 style={styles.radioForm}
