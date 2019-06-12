@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, Modal, Button, View, TouchableHighlight} from 'react-native';
+import {Modal, Button, View, SafeAreaView} from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import ChordModel from './chord.model';
+import styles from './chordSelector.styles';
 
 const rootNoteRadios = Object.keys(ChordModel.rootNote).map(rootNote => ({ label: rootNote, value: ChordModel.rootNote[rootNote] }));
 const stepRadios = Object.keys(ChordModel.step).map(step => ({ label: step, value: ChordModel.step[step] }));
@@ -13,6 +14,18 @@ export default class ChordSelector extends React.Component {
     this.state = {
       modalVisible: false,
       chord: props.chord
+    }
+  }
+  getInitialRadioValue = (chordComponent, value) => {
+    switch(chordComponent) {
+      case 'rootNote':
+        return rootNoteRadios.findIndex(rootNoteRadio => rootNoteRadio.value === value);
+      case 'step':
+        return stepRadios.findIndex(stepRadio => stepRadio.value === value);
+      case 'interval':
+        return intervalRadios.findIndex(intervalRadio => intervalRadio.value === value);
+      default:
+        return 0;
     }
   }
   onChange = () => {
@@ -33,11 +46,13 @@ export default class ChordSelector extends React.Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={this.onChange}>
-          <View style={{marginTop: 22}}>
-            <View>
+          <SafeAreaView style={styles.modalContainer}>
+            <
+            <View style={styles.radioContainer}>
               <RadioForm
+                style={styles.radioForm}
                 radio_props={rootNoteRadios}
-                initial={0}
+                initial={this.getInitialRadioValue('rootNote', this.state.chord.rootNote)}
                 onPress={(rootNote) => {this.setState(s => ({
                   ...s,
                   chord: {
@@ -47,8 +62,9 @@ export default class ChordSelector extends React.Component {
                 }))}}
               />
               <RadioForm
+                style={styles.radioForm}
                 radio_props={stepRadios}
-                initial={0}
+                initial={this.getInitialRadioValue('step', this.state.chord.step)}
                 onPress={(step) => {this.setState(s => ({
                   ...s,
                   chord: {
@@ -58,8 +74,9 @@ export default class ChordSelector extends React.Component {
                 }))}}
               />
               <RadioForm
+                style={styles.radioForm}
                 radio_props={intervalRadios}
-                initial={0}
+                initial={this.getInitialRadioValue('interval', this.state.chord.interval)}
                 onPress={(interval) => {this.setState(s => ({
                   ...s,
                   chord: {
@@ -68,12 +85,9 @@ export default class ChordSelector extends React.Component {
                   }
                 }))}}
               />
-              <TouchableHighlight
-                onPress={() => { this.setState({ modalVisible: false })}}>
-                <Text>Save</Text>
-              </TouchableHighlight>
             </View>
-          </View>
+            <Button title='Save' onPress={() => { this.setState({ modalVisible: false })}}></Button>
+          </SafeAreaView>
         </Modal>
         <Button onPress={this.launchChordEditor} title={this.getChord()}></Button>
       </View>
