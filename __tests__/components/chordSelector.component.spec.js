@@ -5,7 +5,7 @@ import { ChordSelector, rootNoteRadios } from '../../components/chordSelector/ch
 
 import renderer from 'react-test-renderer';
 
-// mocking component dependencies
+// mocking 3rd party libraries
 jest.mock('react-native-simple-radio-button', () => 'RadioForm')
 
 const renderWithProps = (props) => {
