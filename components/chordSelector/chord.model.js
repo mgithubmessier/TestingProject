@@ -1,4 +1,4 @@
-export default {
+export const ChordModel = {
   rootNote: {
     A: 'A',
     B: 'B',

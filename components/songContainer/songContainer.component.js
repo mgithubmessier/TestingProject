@@ -8,26 +8,16 @@
 
 import React from 'react';
 import {View, Button, TextInput} from 'react-native';
-import ChordModel from '../chordSelector/chord.model';
 import { ChordSelector } from '../chordSelector/chordSelector.component';
-import KeySelector from '../keySelector/keySelector.component';
-import { get } from '../../services/content.service';
+import { get } from '../../services/content/content.service';
 
-const defaultChord = {
-    rootNote: 'A',
-    step: 'natural',
-    interval: 'major'
-}
-
-export default class SongContainer extends React.Component {
+export class SongContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log('defaultChord', defaultChord, ChordModel)
     this.state = {
-      chords: [defaultChord],
       chords: [],
-      key: 'A',
-      songName: 'Your Song Title'
+      chords: [],
+      songName: ''
     }
   }
   componentDidMount() {
@@ -47,7 +37,7 @@ export default class SongContainer extends React.Component {
     this.setState((s) => ({ chords }));
   }
   onSongNameChange = (songName) => {
-    this.setState({ songName });
+    this.setState({ songName });s
   }
   renderChordSelectors() {
     return this.state.chords.map((chord, index) => {
@@ -57,8 +47,7 @@ export default class SongContainer extends React.Component {
   render() {
     return (
       <View>
-        <TextInput onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
-        <KeySelector></KeySelector>
+        <TextInput className="song-name-input" onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
         <View className='chord-container'>
           {this.renderChordSelectors()}
           <Button onPress={this.addChord} title="Add Chord"></Button>

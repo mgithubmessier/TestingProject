@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Button, View, SafeAreaView} from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
-import ChordModel from './chord.model';
+import { ChordModel } from './chord.model';
 import styles from './chordSelector.styles';
 
 export const rootNoteRadios = Object.keys(ChordModel.rootNote).map(rootNote => ({ label: rootNote, value: rootNote }));
