@@ -1,7 +1,7 @@
 import 'react-native';
 import { Modal } from 'react-native';
 import React from 'react';
-import { ChordSelector } from '../components/chordSelector/chordSelector.component';
+import { ChordSelector, rootNoteRadios } from '../components/chordSelector/chordSelector.component';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -46,7 +46,13 @@ describe('ChordSelector', () => {
 
   describe('getInitialRadioValue', () => {
     it('should get the intial configuration for the chord component based on the key provided', () => {
+      // arrange/act
+      const initialRooteNoteIndex = rootNoteRadios.findIndex(rootNoteRadio => rootNoteRadio.label === defaultTestChord.rootNote)
+      const testInstance = renderWithProps({ chord: defaultTestChord }).root;
+      const radioForm = testInstance.findByProps({ className: 'rootnote-radioform' });
 
+      // assert
+      expect(radioForm.props.initial).toEqual(initialRooteNoteIndex);
     });
   })
 });

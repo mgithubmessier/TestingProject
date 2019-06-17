@@ -49,6 +49,7 @@ export class ChordSelector extends React.Component {
           <SafeAreaView style={styles.modalContainer}>
             <View style={styles.radioContainer}>
               <RadioForm
+                className="rootnote-radioform"
                 style={styles.radioForm}
                 radio_props={rootNoteRadios}
                 initial={this.getInitialRadioValue('rootNote', this.state.chord.rootNote)}
@@ -61,6 +62,7 @@ export class ChordSelector extends React.Component {
                 }))}}
               />
               <RadioForm
+                className="step-radioform"
                 style={styles.radioForm}
                 radio_props={stepRadios}
                 initial={this.getInitialRadioValue('step', this.state.chord.step)}
@@ -73,6 +75,7 @@ export class ChordSelector extends React.Component {
                 }))}}
               />
               <RadioForm
+                className="interval-radioform"
                 style={styles.radioForm}
                 radio_props={intervalRadios}
                 initial={this.getInitialRadioValue('interval', this.state.chord.interval)}
