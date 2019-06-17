@@ -24,8 +24,6 @@ export class ChordSelector extends React.Component {
         return stepRadios.findIndex(stepRadio => stepRadio.label === value);
       case 'interval':
         return intervalRadios.findIndex(intervalRadio => intervalRadio.label === value);
-      default:
-        return 0;
     }
   }
   onChange = () => {
@@ -33,6 +31,9 @@ export class ChordSelector extends React.Component {
   }
   launchChordEditor = () => {
     this.setState({ modalVisible: true });
+  }
+  hideChordEditor = () => {
+    this.setState({ modalVisible: false });
   }
   getChord = () => {
     const { chord } = this.state;
@@ -98,7 +99,7 @@ export class ChordSelector extends React.Component {
                 />
               </View>
             </View>
-            <Button className="chord-selector-save-btn" title='Save' onPress={() => { this.setState({ modalVisible: false })}}></Button>
+            <Button className="chord-selector-save-btn" title='Save' onPress={this.hideChordEditor}></Button>
           </SafeAreaView>
         </Modal>
         <Button className="chord-selector-launch-btn" onPress={this.launchChordEditor} title={this.getChord()}></Button>
