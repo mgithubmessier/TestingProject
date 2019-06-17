@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import {View, Button, TextInput} from 'react-native';
 import { ChordSelector } from '../chordSelector/chordSelector.component';
@@ -48,7 +40,7 @@ export class SongContainer extends React.Component {
   render() {
     return (
       <View style={styles.songContainer}>
-        <TextInput style={styles.textInput} className="song-name-input" onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
+        <TextInput placeholder="Song title" style={styles.textInput} className="song-name-input" onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
         <View className='chord-container' style={styles.chordContainer}>
           {this.renderChordSelectors()}
         </View>

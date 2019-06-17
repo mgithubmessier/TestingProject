@@ -5,7 +5,9 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import { SongContainer } from '../../components/songContainer/songContainer.component';
 
+// mocking component dependencies
 jest.mock('../../components/chordSelector/chordSelector.component', () => ({ ChordSelector: 'mock-chord-selector' }))
+// mocking service dependencies
 jest.mock('../../services/content/content.service', () => ({
   get: () => Promise.resolve({
     data: {
@@ -56,7 +58,7 @@ describe('SongContainer', () => {
           chordSelector.invoke('onChange')({rootNote: 'A', step: 'sharp', interval: 'minor' });
           chordSelector = testInstance.find('mock-chord-selector').filterWhere(wrapper => wrapper.key() === chordSelector.key());
           // assert
-          expect(chordSelector.props().chord).toEqual({rootNote: 'A', step: 'sharp', interval: 'minor' });
+          expect(chordSelector.props().chord).toEqual({ rootNote: 'A', step: 'sharp', interval: 'minor' });
         } catch(error) {
           fail(error);
         }finally {
