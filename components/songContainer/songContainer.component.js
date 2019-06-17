@@ -10,6 +10,7 @@ import React from 'react';
 import {View, Button, TextInput} from 'react-native';
 import { ChordSelector } from '../chordSelector/chordSelector.component';
 import { get } from '../../services/content/content.service';
+import styles from './songContainer.styles';
 
 export class SongContainer extends React.Component {
   constructor(props) {
@@ -41,17 +42,17 @@ export class SongContainer extends React.Component {
   }
   renderChordSelectors() {
     return this.state.chords.map((chord, index) => {
-      return <ChordSelector chord={chord} key={index} onChange={this.onChordChange(index)}></ChordSelector>
+      return <ChordSelector style={styles.chord} chord={chord} key={index} onChange={this.onChordChange(index)}></ChordSelector>
     });
   }
   render() {
     return (
-      <View>
+      <View style={styles.songContainer}>
         <TextInput className="song-name-input" onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
-        <View className='chord-container'>
+        <View className='chord-container' style={styles.chordContainer}>
           {this.renderChordSelectors()}
-          <Button onPress={this.addChord} title="Add Chord"></Button>
         </View>
+        <Button onPress={this.addChord} title="Add Chord"></Button>
       </View>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button, View, SafeAreaView} from 'react-native';
+import {Modal, Button, View, SafeAreaView, Text} from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import { ChordModel } from './chord.model';
 import styles from './chordSelector.styles';
@@ -40,7 +40,7 @@ export class ChordSelector extends React.Component {
   }
   render() {
     return (
-      <View>
+      <View style={this.props.style}>
         <Modal
           animationType="slide"
           transparent={false}
@@ -48,45 +48,54 @@ export class ChordSelector extends React.Component {
           onRequestClose={this.onChange}>
           <SafeAreaView style={styles.modalContainer}>
             <View style={styles.radioContainer}>
-              <RadioForm
-                className="rootnote-radioform"
-                style={styles.radioForm}
-                radio_props={rootNoteRadios}
-                initial={this.getInitialRadioValue('rootNote', this.state.chord.rootNote)}
-                onPress={(rootNote) => {this.setState(s => ({
-                  ...s,
-                  chord: {
-                    ...s.chord,
-                    rootNote
-                  }
-                }))}}
-              />
-              <RadioForm
-                className="step-radioform"
-                style={styles.radioForm}
-                radio_props={stepRadios}
-                initial={this.getInitialRadioValue('step', this.state.chord.step)}
-                onPress={(step) => {this.setState(s => ({
-                  ...s,
-                  chord: {
-                    ...s.chord,
-                    step
-                  }
-                }))}}
-              />
-              <RadioForm
-                className="interval-radioform"
-                style={styles.radioForm}
-                radio_props={intervalRadios}
-                initial={this.getInitialRadioValue('interval', this.state.chord.interval)}
-                onPress={(interval) => {this.setState(s => ({
-                  ...s,
-                  chord: {
-                    ...s.chord,
-                    interval
-                  }
-                }))}}
-              />
+              <View style={styles.radioFormContainer}>
+                <Text>Root Note</Text>
+                <RadioForm
+                  className="rootnote-radioform"
+                  style={styles.radioForm}
+                  radio_props={rootNoteRadios}
+                  initial={this.getInitialRadioValue('rootNote', this.state.chord.rootNote)}
+                  onPress={(rootNote) => {this.setState(s => ({
+                    ...s,
+                    chord: {
+                      ...s.chord,
+                      rootNote
+                    }
+                  }))}}
+                />
+              </View>
+              <View style={styles.radioFormContainer}>
+                <Text>Step</Text>
+                <RadioForm
+                  className="step-radioform"
+                  style={styles.radioForm}
+                  radio_props={stepRadios}
+                  initial={this.getInitialRadioValue('step', this.state.chord.step)}
+                  onPress={(step) => {this.setState(s => ({
+                    ...s,
+                    chord: {
+                      ...s.chord,
+                      step
+                    }
+                  }))}}
+                />
+              </View>
+              <View style={styles.radioFormContainer}>
+                <Text>Interval</Text>
+                <RadioForm
+                  className="interval-radioform"
+                  style={styles.radioForm}
+                  radio_props={intervalRadios}
+                  initial={this.getInitialRadioValue('interval', this.state.chord.interval)}
+                  onPress={(interval) => {this.setState(s => ({
+                    ...s,
+                    chord: {
+                      ...s.chord,
+                      interval
+                    }
+                  }))}}
+                />
+              </View>
             </View>
             <Button className="chord-selector-save-btn" title='Save' onPress={() => { this.setState({ modalVisible: false })}}></Button>
           </SafeAreaView>

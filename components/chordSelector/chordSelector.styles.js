@@ -14,5 +14,13 @@ export default StyleSheet.create({
   },
   radioForm: {
     margin: 5
+  },
+  radioFormContainer: {
+    padding: 5,
+    margin: 5,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 5
   }
 });
