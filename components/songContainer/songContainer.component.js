@@ -29,7 +29,7 @@ export class SongContainer extends React.Component {
     });
   }
   addChord = () => {
-    this.setState(s => ({ chords: [...s.chords, defaultChord] }))
+    this.setState(s => ({ chords: [...s.chords, { rootNote: 'A', step: 'natural', interval: 'major' }] }))
   }
   onChordChange= (index) => (chordChange) => {
     const chords = this.state.chords;
@@ -37,7 +37,7 @@ export class SongContainer extends React.Component {
     this.setState((s) => ({ chords }));
   }
   onSongNameChange = (songName) => {
-    this.setState({ songName });s
+    this.setState({ songName });
   }
   renderChordSelectors() {
     return this.state.chords.map((chord, index) => {
