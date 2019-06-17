@@ -23,12 +23,16 @@ describe('SongContainer', () => {
     it('should load the song into the state', (done) => {
       // arrange
       const testInstance = renderWithProps();
+      let songNameInput = testInstance.find('.song-name-input').first();
+      let chordSelector = testInstance.find('mock-chord-selector').first();
+      expect(chordSelector.length).toEqual(0);
+      expect(songNameInput.props().value).toEqual('');
       // act
       testInstance.instance().loadSong().then(() => {
         // assert
         try {
-          const songNameInput = testInstance.find('.song-name-input').first();
-          const chordSelector = testInstance.find('mock-chord-selector').first();
+          songNameInput = testInstance.find('.song-name-input').first();
+          chordSelector = testInstance.find('mock-chord-selector').first();
           expect(songNameInput.props().value).toEqual('Mock Song');
           expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
         } catch(error) {
@@ -41,7 +45,7 @@ describe('SongContainer', () => {
   });
 
   describe('onChordChange', () => {
-    it('should map the chord to the correct display value', (done) => {
+    it('should provide the updated chord back to chord selector as a property', (done) => {
       // arrange
       const testInstance = renderWithProps();
       testInstance.instance().loadSong().then(() => {
@@ -49,8 +53,8 @@ describe('SongContainer', () => {
           let chordSelector = testInstance.find('mock-chord-selector').first();
           expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
           // act
-          chordSelector.props().onChange({rootNote: 'A', step: 'sharp', interval: 'minor' });
-          chordSelector = testInstance.find('mock-chord-selector').first();
+          chordSelector.invoke('onChange')({rootNote: 'A', step: 'sharp', interval: 'minor' });
+          chordSelector = testInstance.find('mock-chord-selector').filterWhere(wrapper => wrapper.key() === chordSelector.key());
           // assert
           expect(chordSelector.props().chord).toEqual({rootNote: 'A', step: 'sharp', interval: 'minor' });
         } catch(error) {
