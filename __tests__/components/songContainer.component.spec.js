@@ -27,8 +27,10 @@ describe('SongContainer', () => {
       let chordSelector = testInstance.find('mock-chord-selector').first();
       expect(chordSelector.length).toEqual(0);
       expect(songNameInput.props().value).toEqual('');
+
       // act
       testInstance.instance().loadSong().then(() => {
+
         // assert
         try {
           songNameInput = testInstance.find('.song-name-input').first();
@@ -52,9 +54,11 @@ describe('SongContainer', () => {
         try {
           let chordSelector = testInstance.find('mock-chord-selector').first();
           expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
+
           // act
           chordSelector.invoke('onChange')({rootNote: 'A', step: 'sharp', interval: 'minor' });
           chordSelector = testInstance.find('mock-chord-selector').filterWhere(wrapper => wrapper.key() === chordSelector.key());
+
           // assert
           expect(chordSelector.props().chord).toEqual({ rootNote: 'A', step: 'sharp', interval: 'minor' });
         } catch(error) {
