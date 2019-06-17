@@ -51,8 +51,10 @@ describe('ChordSelector', () => {
 
   describe('getInitialRadioValue', () => {
     it('should get the intial configuration for the chord component based on the key provided', () => {
-      // arrange/act
+      // arrange
       const initialRooteNoteIndex = rootNoteRadios.findIndex(rootNoteRadio => rootNoteRadio.label === defaultTestChord.rootNote)
+
+      // act
       const testInstance = renderWithProps({ chord: defaultTestChord }).root;
       const radioForm = testInstance.findByProps({ className: 'rootnote-radioform' });
 
