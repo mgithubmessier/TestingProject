@@ -4,11 +4,11 @@ import RadioForm from 'react-native-simple-radio-button';
 import ChordModel from './chord.model';
 import styles from './chordSelector.styles';
 
-const rootNoteRadios = Object.keys(ChordModel.rootNote).map(rootNote => ({ label: rootNote, value: ChordModel.rootNote[rootNote] }));
-const stepRadios = Object.keys(ChordModel.step).map(step => ({ label: step, value: ChordModel.step[step] }));
-const intervalRadios = Object.keys(ChordModel.interval).map(interval => ({ label: interval, value: ChordModel.interval[interval] }));
+export const rootNoteRadios = Object.keys(ChordModel.rootNote).map(rootNote => ({ label: rootNote, value: rootNote }));
+export const stepRadios = Object.keys(ChordModel.step).map(step => ({ label: step, value: step }));
+export const intervalRadios = Object.keys(ChordModel.interval).map(interval => ({ label: interval, value: interval }));
 
-export default class ChordSelector extends React.Component {
+export class ChordSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,11 +19,11 @@ export default class ChordSelector extends React.Component {
   getInitialRadioValue = (chordComponent, value) => {
     switch(chordComponent) {
       case 'rootNote':
-        return rootNoteRadios.findIndex(rootNoteRadio => rootNoteRadio.value === value);
+        return rootNoteRadios.findIndex(rootNoteRadio => rootNoteRadio.label === value);
       case 'step':
-        return stepRadios.findIndex(stepRadio => stepRadio.value === value);
+        return stepRadios.findIndex(stepRadio => stepRadio.label === value);
       case 'interval':
-        return intervalRadios.findIndex(intervalRadio => intervalRadio.value === value);
+        return intervalRadios.findIndex(intervalRadio => intervalRadio.label === value);
       default:
         return 0;
     }
@@ -36,7 +36,7 @@ export default class ChordSelector extends React.Component {
   }
   getChord = () => {
     const { chord } = this.state;
-    return `${chord.rootNote}${chord.step}${chord.interval}`
+    return `${ChordModel.rootNote[chord.rootNote]}${ChordModel.step[chord.step]}${ChordModel.interval[chord.interval]}`
   }
   render() {
     return (
@@ -85,10 +85,10 @@ export default class ChordSelector extends React.Component {
                 }))}}
               />
             </View>
-            <Button title='Save' onPress={() => { this.setState({ modalVisible: false })}}></Button>
+            <Button className="chord-selector-save-btn" title='Save' onPress={() => { this.setState({ modalVisible: false })}}></Button>
           </SafeAreaView>
         </Modal>
-        <Button onPress={this.launchChordEditor} title={this.getChord()}></Button>
+        <Button className="chord-selector-launch-btn" onPress={this.launchChordEditor} title={this.getChord()}></Button>
       </View>
     )
   }

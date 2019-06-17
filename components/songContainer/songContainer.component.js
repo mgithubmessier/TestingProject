@@ -7,15 +7,18 @@
  */
 
 import React from 'react';
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {View, Button, TextInput} from 'react-native';
 import ChordModel from '../chordSelector/chord.model';
-import ChordSelector from '../chordSelector/chordSelector.component';
+import { ChordSelector } from '../chordSelector/chordSelector.component';
 import KeySelector from '../keySelector/keySelector.component';
+import { get } from '../../services/content.service';
+
 const defaultChord = {
-    rootNote: ChordModel.rootNote.A,
-    step: ChordModel.step.natural,
-    interval: ChordModel.interval.major
-  }
+    rootNote: 'A',
+    step: 'natural',
+    interval: 'major'
+}
+
 export default class SongContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +29,14 @@ export default class SongContainer extends React.Component {
       key: 'A',
       songName: 'Your Song Title'
     }
+  }
+  componentDidMount() {
+    this.loadSong();
+  }
+  loadSong() {
+    return get().then(({ data }) => {
+      this.setState(data);
+    });
   }
   addChord = () => {
     this.setState(s => ({ chords: [...s.chords, defaultChord] }))
@@ -56,22 +67,3 @@ export default class SongContainer extends React.Component {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
