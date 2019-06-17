@@ -17,7 +17,7 @@ export class SongContainer extends React.Component {
     this.loadSong();
   }
   loadSong() {
-    return get().then(({ data }) => {
+    return get().then((data) => {
       this.setState(data);
     });
   }

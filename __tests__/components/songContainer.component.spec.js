@@ -10,10 +10,8 @@ jest.mock('../../components/chordSelector/chordSelector.component', () => ({ Cho
 // mocking service dependencies
 jest.mock('../../services/content/content.service', () => ({
   get: () => Promise.resolve({
-    data: {
-      songName: 'Mock Song',
-      chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
-    }
+    songName: 'Mock Song',
+    chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
   }),
 }));
 
