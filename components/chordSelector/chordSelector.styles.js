@@ -22,5 +22,10 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: 'grey',
     borderRadius: 5
+  },
+  chord: {
+    fontSize: 40,
+    padding: 5,
+    margin: 5
   }
 });

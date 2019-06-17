@@ -17,5 +17,13 @@ export default StyleSheet.create({
   chord: {
     padding: 5,
     margin: 5
+  },
+  textInput: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 5,
+    padding: 10,
+    fontSize: 20,
   }
 });

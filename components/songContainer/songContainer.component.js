@@ -48,7 +48,7 @@ export class SongContainer extends React.Component {
   render() {
     return (
       <View style={styles.songContainer}>
-        <TextInput className="song-name-input" onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
+        <TextInput style={styles.textInput} className="song-name-input" onChangeText={this.onSongNameChange} value={this.state.songName}></TextInput>
         <View className='chord-container' style={styles.chordContainer}>
           {this.renderChordSelectors()}
         </View>
