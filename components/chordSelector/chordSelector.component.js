@@ -3,6 +3,7 @@ import {Modal, Button, View, SafeAreaView, Text} from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import { ChordModel } from './chord.model';
 import styles from './chordSelector.styles';
+import { InfoLauncher } from '../infoLauncher/infoLauncher.component';
 
 export const rootNoteRadios = Object.keys(ChordModel.rootNote).map(rootNote => ({ label: rootNote, value: rootNote }));
 export const stepRadios = Object.keys(ChordModel.step).map(step => ({ label: step, value: step }));
@@ -48,7 +49,10 @@ export class ChordSelector extends React.Component {
           visible={this.state.modalVisible}
           onRequestClose={this.onChange}>
           <SafeAreaView style={styles.modalContainer}>
-            <Text style={styles.chord}>{this.getChord()}</Text>
+            <View style={styles.previewContainer}>
+              <Text style={styles.chord}>{this.getChord()}</Text>
+              <InfoLauncher info="this is the chord you are creating"/>
+            </View>
             <View style={styles.radioContainer}>
               <View style={styles.radioFormContainer}>
                 <Text>Root Note</Text>

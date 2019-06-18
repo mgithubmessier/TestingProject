@@ -13,6 +13,11 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row'
   },
+  previewContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
   radioForm: {
     margin: 5
   },
