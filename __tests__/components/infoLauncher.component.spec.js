@@ -16,7 +16,7 @@ describe('InfoLauncher', () => {
       expect(alertSpy).not.toHaveBeenCalled();
 
       // act
-      const clickableElement = wrapper.find('.clickable').simulate('press');
+      wrapper.find('.clickable').simulate('press');
 
       // assert
       expect(alertSpy).toHaveBeenCalled();
