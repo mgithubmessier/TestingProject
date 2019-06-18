@@ -1,27 +1,36 @@
-import 'react-native';
 import React from 'react';
 import enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import { SongContainer } from '../../components/songContainer/songContainer.component';
+import ContentService from '../../services/content/content.service';
 
 // mocking component dependencies
 jest.mock('../../components/chordSelector/chordSelector.component', () => ({ ChordSelector: 'mock-chord-selector' }))
 // mocking service dependencies
-jest.mock('../../services/content/content.service', () => ({
-  get: () => Promise.resolve({
-    songName: 'Mock Song',
-    chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
-  }),
-}));
+jest.mock('../../services/content/content.service');
 
 enzyme.configure({ adapter: new Adapter() });
 const renderWithProps = (props = {}, method = 'shallow') => enzyme[method](<SongContainer {...props} />);
 
 describe('SongContainer', () => {
   describe('loadSong', () => {
+    it('should load the song upon mounting the component', () => {
+      // arrange
+      const getSpy = jest.spyOn(ContentService, 'get').mockResolvedValue({});
+
+      // act
+      renderWithProps();
+
+      // assert
+      expect(getSpy).toHaveBeenCalled();
+    });
     it('should load the song into the state', (done) => {
       // arrange
+      ContentService.get.mockResolvedValue({
+        songName: 'Mock Song',
+        chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
+      })
       const testInstance = renderWithProps();
       let songNameInput = testInstance.find('.song-name-input').first();
       let chordSelector = testInstance.find('mock-chord-selector').first();
@@ -49,6 +58,10 @@ describe('SongContainer', () => {
   describe('onChordChange', () => {
     it('should provide the updated chord back to chord selector as a property', (done) => {
       // arrange
+      ContentService.get.mockResolvedValue({
+        songName: 'Mock Song',
+        chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
+      })
       const testInstance = renderWithProps();
       testInstance.instance().loadSong().then(() => {
         try {

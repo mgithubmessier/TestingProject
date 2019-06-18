@@ -7,3 +7,7 @@ export function get(endpoint, entity = 'data') {
     window.alert(`Error retrieving ${entity}. Please try again in a few minutes.`);
   });
 }
+
+export default {
+  get
+};
