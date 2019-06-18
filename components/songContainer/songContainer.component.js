@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Button, TextInput} from 'react-native';
 import { ChordSelector } from '../chordSelector/chordSelector.component';
-import { get } from '../../services/content/content.service';
+import ContentService from '../../services/content/content.service';
 import styles from './songContainer.styles';
 
 export class SongContainer extends React.Component {
@@ -17,7 +17,7 @@ export class SongContainer extends React.Component {
     this.loadSong();
   }
   loadSong() {
-    return get().then((data) => {
+    return ContentService.get().then((data) => {
       this.setState(data);
     });
   }
