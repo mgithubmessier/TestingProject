@@ -5,7 +5,7 @@ import { SongContainer } from './components/songContainer/songContainer.componen
 export default class App extends React.Component {
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: '#83EA61' }}>
         <SongContainer/>
       </SafeAreaView>
     );

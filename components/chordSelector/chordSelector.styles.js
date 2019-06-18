@@ -5,7 +5,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: 'cyan'
   },
   radioContainer: {
     justifyContent: 'center',
