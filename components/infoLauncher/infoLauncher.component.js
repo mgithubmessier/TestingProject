@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, TouchableHighlight } from 'react-native';
+import { Image, TouchableHighlight } from 'react-native';
 
 export class InfoLauncher extends React.Component {
   launchAlert = () => {
