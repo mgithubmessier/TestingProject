@@ -1,6 +1,5 @@
-import 'react-native';
-import { Modal } from 'react-native';
 import React from 'react';
+import { Modal } from 'react-native';
 import { ChordSelector, rootNoteRadios } from '../../components/chordSelector/chordSelector.component';
 
 import renderer from 'react-test-renderer';
