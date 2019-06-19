@@ -7,8 +7,6 @@ import ContentService from '../../services/content/content.service';
 
 // mocking component dependencies
 jest.mock('../../components/chordSelector/chordSelector.component', () => ({ ChordSelector: 'mock-chord-selector' }))
-// mocking service dependencies
-jest.mock('../../services/content/content.service');
 
 enzyme.configure({ adapter: new Adapter() });
 const renderWithProps = (props = {}, method = 'shallow') => enzyme[method](<SongContainer {...props} />);
