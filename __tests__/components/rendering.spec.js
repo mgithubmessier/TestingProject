@@ -28,9 +28,6 @@ describe('Rendering Test', () => {
       expect(wrapper.find('.parent-container').getElement()).toEqual(element);
     });
   });
-  describe('render', () => {
-
-  });
   describe('mount', () => {
     // TODO find a way to stop the syntax problem that occurs when using enzyme.mount()
     const origConsole = console.error;
