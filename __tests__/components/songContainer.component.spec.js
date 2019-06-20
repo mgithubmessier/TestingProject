@@ -25,10 +25,10 @@ describe('SongContainer', () => {
     });
     it('should load the song into the state', (done) => {
       // arrange
-      ContentService.get.mockResolvedValue({
+      ContentService.get.mockReturnValue(Promise.resolve({
         songName: 'Mock Song',
         chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
-      })
+      }));
       const testInstance = renderWithProps();
       let songNameInput = testInstance.find('.song-name-input').first();
       let chordSelector = testInstance.find('mock-chord-selector').first();
@@ -39,30 +39,23 @@ describe('SongContainer', () => {
       testInstance.instance().loadSong().then(() => {
 
         // assert
-        try {
           songNameInput = testInstance.find('.song-name-input').first();
           chordSelector = testInstance.find('mock-chord-selector').first();
           expect(songNameInput.props().value).toEqual('Mock Song');
           expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
-        } catch(error) {
-          fail(error);
-        }finally {
-          done();
-        }
-      });
+      }).catch(fail).finally(done);
     });
   });
 
   describe('onChordChange', () => {
     it('should provide the updated chord back to chord selector as a property', (done) => {
       // arrange
-      ContentService.get.mockResolvedValue({
+      ContentService.get.mockReturnValue(Promise.resolve({
         songName: 'Mock Song',
         chords: [{rootNote: 'B', step: 'sharp', interval: 'minor' }],
-      })
+      }));
       const testInstance = renderWithProps();
       testInstance.instance().loadSong().then(() => {
-        try {
           let chordSelector = testInstance.find('mock-chord-selector').first();
           expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
 
@@ -72,12 +65,7 @@ describe('SongContainer', () => {
 
           // assert
           expect(chordSelector.props().chord).toEqual({ rootNote: 'A', step: 'sharp', interval: 'minor' });
-        } catch(error) {
-          fail(error);
-        }finally {
-          done();
-        }
-      });
+      }).catch(fail).finally(done);
     });
   })
 });
