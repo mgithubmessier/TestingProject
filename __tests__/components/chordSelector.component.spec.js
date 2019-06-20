@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal } from 'react-native';
 import { ChordSelector, rootNoteRadios } from '../../components/chordSelector/chordSelector.component';
 
+/** NOT USING ENZYME, this is an example test for using react's out-of-box renderer */
 import renderer from 'react-test-renderer';
 
 // mocking 3rd party libraries
