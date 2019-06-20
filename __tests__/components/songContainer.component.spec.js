@@ -37,12 +37,11 @@ describe('SongContainer', () => {
 
       // act
       testInstance.instance().loadSong().then(() => {
-
         // assert
-          songNameInput = testInstance.find('.song-name-input').first();
-          chordSelector = testInstance.find('mock-chord-selector').first();
-          expect(songNameInput.props().value).toEqual('Mock Song');
-          expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
+        songNameInput = testInstance.find('.song-name-input').first();
+        chordSelector = testInstance.find('mock-chord-selector').first();
+        expect(songNameInput.props().value).toEqual('Mock Song');
+        expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
       }).catch(fail).finally(done);
     });
   });
@@ -56,15 +55,15 @@ describe('SongContainer', () => {
       }));
       const testInstance = renderWithProps();
       testInstance.instance().loadSong().then(() => {
-          let chordSelector = testInstance.find('mock-chord-selector').first();
-          expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
+        let chordSelector = testInstance.find('mock-chord-selector').first();
+        expect(chordSelector.props().chord).toEqual({rootNote: 'B', step: 'sharp', interval: 'minor' });
 
-          // act
-          chordSelector.invoke('onChange')({rootNote: 'A', step: 'sharp', interval: 'minor' });
-          chordSelector = testInstance.find('mock-chord-selector').filterWhere(wrapper => wrapper.key() === chordSelector.key());
+        // act
+        chordSelector.invoke('onChange')({rootNote: 'A', step: 'sharp', interval: 'minor' });
+        chordSelector = testInstance.find('mock-chord-selector').filterWhere(wrapper => wrapper.key() === chordSelector.key());
 
-          // assert
-          expect(chordSelector.props().chord).toEqual({ rootNote: 'A', step: 'sharp', interval: 'minor' });
+        // assert
+        expect(chordSelector.props().chord).toEqual({ rootNote: 'A', step: 'sharp', interval: 'minor' });
       }).catch(fail).finally(done);
     });
   })

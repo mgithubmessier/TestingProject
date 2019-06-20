@@ -32,20 +32,20 @@ describe('ChordSelector', () => {
       expect(chordSelectorModal.props.visible).toEqual(true);
     });
     it('should set the modal to not visible when the save button has been clicked', () => {
-            // arrange
-            const testInstance = renderWithProps({ chord: defaultTestChord }).root;
-            const chordSelectorButton = testInstance.findByProps({ className: 'chord-selector-launch-btn' });
-            const chordSelectorModal = testInstance.findByType(Modal);
-            chordSelectorButton.props.onPress();
-            expect(chordSelectorModal.props.visible).toEqual(true);
-            const saveChordButton = testInstance.findByProps({ className: 'chord-selector-save-btn' });
+      // arrange
+      const testInstance = renderWithProps({ chord: defaultTestChord }).root;
+      const chordSelectorButton = testInstance.findByProps({ className: 'chord-selector-launch-btn' });
+      const chordSelectorModal = testInstance.findByType(Modal);
+      chordSelectorButton.props.onPress();
+      expect(chordSelectorModal.props.visible).toEqual(true);
+      const saveChordButton = testInstance.findByProps({ className: 'chord-selector-save-btn' });
 
-            // act
-            saveChordButton.props.onPress();
+      // act
+      saveChordButton.props.onPress();
 
-            // assert
-            expect(chordSelectorModal.props.visible).toEqual(false);
-          });
+      // assert
+      expect(chordSelectorModal.props.visible).toEqual(false);
+    });
   });
 
   describe('getInitialRadioValue', () => {
